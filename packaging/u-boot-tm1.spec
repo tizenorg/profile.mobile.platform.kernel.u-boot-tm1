@@ -9,10 +9,6 @@ URL: http://sourceforge.net/projects/u-boot
 Source0: %{name}-%{version}.tar.bz2
 Source1001: packaging/u-boot-tm1.manifest 
 
-%if "%{tizen_target_name}" != "Z300H"
-ExcludeArch: %{arm}
-%endif
-
 %description
 bootloader for Embedded boards based on ARM processor
 
