@@ -5,7 +5,7 @@ Release: 0
 Group: System/Kernel
 License: GPL-2.0+
 ExclusiveArch: %{arm}
-URL: http://sourceforge.net/projects/u-boot
+URL: http://www.denx.de/wiki/U-Boot
 Source0: %{name}-%{version}.tar.bz2
 Source1001: packaging/u-boot-tm1.manifest 
 
