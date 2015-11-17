@@ -1,9 +1,9 @@
 Name: u-boot-sprd
-Summary: bootloader for Embedded boards based on ARM processor
+Summary: Bootloader for Embedded boards based on ARM processor
 Version: 2010.12
 Release: 0
-Group: System Environment/Kernel
-License: GPL
+Group: System/Kernel
+License: GPL-2.0+
 ExclusiveArch: %{arm}
 URL: http://sourceforge.net/projects/u-boot
 Source0: %{name}-%{version}.tar.bz2
@@ -14,7 +14,7 @@ bootloader for Embedded boards based on ARM processor
 
 %package -n u-boot-tm1
 Summary: A bootloader for Embedded system
-Group: System Environment/Kernel
+Group: System/Kernel
 
 %description -n u-boot-tm1
 A boot loader for embedded systems.
@@ -55,14 +55,14 @@ mkimage_signed.sh u-boot.bin "tizen_tm1"
 rm -rf %{buildroot}
 
 # u-boot installation
-mkdir -p %{buildroot}/var/tmp/u-boot
-install -d %{buildroot}/var/tmp/u-boot
-install -m 755 u-boot.bin %{buildroot}/var/tmp/u-boot
-install -m 755 u-boot-mmc.bin %{buildroot}/var/tmp/u-boot
+mkdir -p %{buildroot}/boot/u-boot
+install -d %{buildroot}/boot/u-boot
+install -m 755 u-boot.bin %{buildroot}/boot/u-boot
+install -m 755 u-boot-mmc.bin %{buildroot}/boot/u-boot
 
 %clean
 
 %files -n u-boot-tm1
 %manifest u-boot-tm1.manifest
 %defattr(-,root,root,-)
-/var/tmp/u-boot
+/boot/u-boot
