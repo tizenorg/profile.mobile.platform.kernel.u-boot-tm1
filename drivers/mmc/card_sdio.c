@@ -2652,7 +2652,7 @@ PUBLIC uint32 CARD_SDIO_GetCapacity(CARD_SDIO_HANDLE cardHandle)
 {
 	CARD_SDIO_ASSERT(TRUE == _IsCardHandleValid(cardHandle));	/*assert verified*/
 
-	return (cardHandle->Capacity -cardHandle->Rpmb_Capacity -cardHandle->Boot1_Capacity -cardHandle->Boot2_Capacity);
+	return cardHandle->Capacity;
 }
 
 /*****************************************************************************/
@@ -2891,7 +2891,7 @@ PUBLIC uint32 Emmc_GetCapacity(CARD_EMMC_PARTITION_TPYE cardPartiton)
 	switch(cardPartiton)
 	{
 		case PARTITION_USER:
-			return (emmc_handle->Capacity - emmc_handle->Boot1_Capacity - emmc_handle->Boot2_Capacity);
+			return emmc_handle->Capacity;
 			
 		case PARTITION_BOOT1:
 			return emmc_handle->Boot1_Capacity;			
