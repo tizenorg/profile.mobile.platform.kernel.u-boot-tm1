@@ -423,6 +423,23 @@ void pmic_init(void)
 #endif
 }
 
+#ifdef CONFIG_TIZEN
+#define REBOOT_MODE_MASK	(0xFFFFFFF0)
+#define REBOOT_MODE_PREFIX	(0x12345670)
+#define REBOOT_THOR_DOWNLOAD		(0x1)
+int tizen_reboot_check(void)
+{
+	int inform3 = readl(INFORM3);
+
+	if ((inform3 & REBOOT_MODE_MASK) == REBOOT_MODE_PREFIX) {
+		if ((inform3 & 0xf) == REBOOT_THOR_DOWNLOAD)
+			return 1;
+	}
+
+	return 0;
+}
+#endif
+
 #define REG32(x)                                    (*((volatile uint32 *)(x)))
 void gpu_clk_auto_gate_disable()
 {
