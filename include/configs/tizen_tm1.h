@@ -323,6 +323,9 @@
 #define CONFIG_CMDLINE_EDITING
 #define CONFIG_SYS_LONGHELP
 
+/* INFORM3 */
+#define INFORM3	0xf90
+
 /* support OS choose */
 #undef CONFIG_BOOTM_NETBSD
 #undef CONFIG_BOOTM_RTEMS

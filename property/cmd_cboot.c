@@ -228,6 +228,10 @@ boot_mode_enum_type  get_mode_from_gpio_extend(void){
     }
 }
 
+#ifdef CONFIG_TIZEN
+extern int tizen_reboot_check(void);
+#endif
+
 int do_cboot(cmd_tbl_t *cmdtp, int flag, int argc, char *const argv[])
 {
     volatile int i;
@@ -280,8 +284,14 @@ int do_cboot(cmd_tbl_t *cmdtp, int flag, int argc, char *const argv[])
     DBG("do_cboot:boot mode is %d\n",bootmode);
 
 #ifdef CONFIG_TIZEN
-	if (bootmode == CMD_NONE)
+	if (bootmode == CMD_NONE) {
 		bootmode = CMD_NORMAL_MODE;
+		if (tizen_reboot_check()) {
+			bootmode = CMD_THOR_MODE;
+			DBG("do_cboot:boot mode is %d\n",bootmode);
+		}
+
+	}
 #endif
 
 #ifdef CONFIG_LCD_LOGO
