@@ -284,8 +284,9 @@ int do_cboot(cmd_tbl_t *cmdtp, int flag, int argc, char *const argv[])
     DBG("do_cboot:boot mode is %d\n",bootmode);
 
 #ifdef CONFIG_TIZEN
-	if (bootmode == CMD_NONE) {
-		bootmode = CMD_NORMAL_MODE;
+	if (bootmode == CMD_NONE || bootmode == CMD_CHARGE_MODE) {
+		if (bootmode == CMD_NONE)
+			bootmode = CMD_NORMAL_MODE;
 		if (tizen_reboot_check()) {
 			bootmode = CMD_THOR_MODE;
 			DBG("do_cboot:boot mode is %d\n",bootmode);
