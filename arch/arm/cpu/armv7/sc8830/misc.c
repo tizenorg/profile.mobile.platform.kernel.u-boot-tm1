@@ -432,8 +432,10 @@ int tizen_reboot_check(void)
 	int inform3 = readl(INFORM3);
 
 	if ((inform3 & REBOOT_MODE_MASK) == REBOOT_MODE_PREFIX) {
-		if ((inform3 & 0xf) == REBOOT_THOR_DOWNLOAD)
+		if ((inform3 & 0xf) == REBOOT_THOR_DOWNLOAD) {
+			writel(0, INFORM3);
 			return 1;
+		}
 	}
 
 	return 0;
