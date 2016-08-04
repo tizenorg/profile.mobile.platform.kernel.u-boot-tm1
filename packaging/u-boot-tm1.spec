@@ -9,6 +9,10 @@ URL: http://www.denx.de/wiki/U-Boot
 Source0: %{name}-%{version}.tar.bz2
 Source1001: packaging/u-boot-tm1.manifest 
 
+%if "%{tizen_target_name}" != "TM1"
+ExcludeArch: %{arm}
+%endif
+
 %description
 bootloader for Embedded boards based on ARM processor
 
